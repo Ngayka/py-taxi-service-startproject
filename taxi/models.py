@@ -1,0 +1,24 @@
+from django.contrib.auth.models import AbstractUser
+from django.db import models
+from django.db.models import ManyToManyField
+
+from taxi_service import settings
+
+
+class Manufacturer(models.Model):
+    name = models.CharField(max_length=63, unique=True)
+    country = models.CharField(max_length=63)
+
+
+class Car(models.Model):
+    manufacturer = models.ForeignKey(Manufacturer, on_delete=models.CASCADE)
+    model = models.CharField(max_length=63)
+    drivers = ManyToManyField(settings.AUTH_USER_MODEL)
+
+    class Meta:
+        ordering = ["model"]
+
+
+class Driver(AbstractUser):
+    password = models.CharField(max_length=63)
+    license_number = models.CharField(max_length=63, unique=True)
