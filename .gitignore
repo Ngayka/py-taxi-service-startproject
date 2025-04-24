@@ -89,3 +89,6 @@ celerybeat.pid
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+*/migrations/
+!*/migrations/__init__.py
