@@ -20,5 +20,4 @@ class Car(models.Model):
 
 
 class Driver(AbstractUser):
-    password = models.CharField(max_length=63)
     license_number = models.CharField(max_length=63, unique=True)
